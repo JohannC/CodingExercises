@@ -21,12 +21,12 @@ class Edge {
 
 class Graph {
     constructor(matrix, startingVertexKey) {
-        this.vertexList = this._computeVertexList(matrix);
-        this._setStartingPoint(this.vertexList[startingVertexKey]);
+        this.adj = this._computeVertexList(matrix);
+        this._setStartingPoint(this.adj[startingVertexKey]);
     }
 
     dijkstra() {
-        let queue = this.vertexList.slice();
+        let queue = this.adj.slice();
         while (queue.length !== 0) {
             let vertex = this._getMinDistanceVertex(queue);
             queue = queue.filter(x => x !== vertex);
@@ -41,7 +41,7 @@ class Graph {
     }
 
     bellmann() {
-        this.vertexList.map(vertex => {
+        this.adj.map(vertex => {
             vertex.edges.map(edge => {
                 if (edge.vertexDestination.distance > vertex.distance + edge.distance) {
                     edge.vertexDestination.distance = vertex.distance + edge.distance;
@@ -49,7 +49,7 @@ class Graph {
                 }
             })
         });
-        this.vertexList.map(vertex => {
+        this.adj.map(vertex => {
             vertex.edges.map(edge => {
                 if (edge.vertexDestination.distance > vertex.distance + edge.distance) {
                     return false;
@@ -62,7 +62,7 @@ class Graph {
     getPath(vertexKeyTo) {
         let result = [];
         result.push(vertexKeyTo);
-        let vertex = this.vertexList[vertexKeyTo]
+        let vertex = this.adj[vertexKeyTo]
         while (vertex.parent !== null) {
             result.unshift(vertex.parent.key);
             vertex = vertex.parent
@@ -71,7 +71,7 @@ class Graph {
     }
 
     getDistance(vertexKeyTo) {
-        return this.vertexList[vertexKeyTo].distance
+        return this.adj[vertexKeyTo].distance
     }
 
     _computeVertexList(matrix) {
