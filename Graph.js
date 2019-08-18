@@ -40,6 +40,25 @@ class Graph {
         }
     }
 
+    bellmann() {
+        this.vertexList.map(vertex => {
+            vertex.edges.map(edge => {
+                if (edge.vertexDestination.distance > vertex.distance + edge.distance) {
+                    edge.vertexDestination.distance = vertex.distance + edge.distance;
+                    edge.vertexDestination.parent = vertex
+                }
+            })
+        });
+        this.vertexList.map(vertex => {
+            vertex.edges.map(edge => {
+                if (edge.vertexDestination.distance > vertex.distance + edge.distance) {
+                    return false;
+                }
+            })
+        });
+        return true;
+    }
+
     getPath(vertexKeyTo) {
         let result = [];
         result.push(vertexKeyTo);
@@ -55,7 +74,7 @@ class Graph {
         return this.vertexList[vertexKeyTo].distance
     }
 
-    _computeVertexList(matrix){
+    _computeVertexList(matrix) {
         let vertexList = []
         for (let i = 0; i < matrix.length; i++) {
             if (vertexList[i] === undefined) vertexList[i] = new Vertex(i);
@@ -106,3 +125,10 @@ let graph = new Graph(matrix, 0);
 graph.dijkstra();
 console.log(graph.getPath(2));
 console.log(graph.getDistance(2));
+
+let graph2 = new Graph(matrix, 0);
+if (graph.bellmann()) {
+    console.log(graph.getPath(2));
+    console.log(graph.getDistance(2));
+}
+
