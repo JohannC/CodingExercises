@@ -80,4 +80,3 @@ console.log(getDepth(TreeDepth2)); //false
 console.log(getDepth(TreeDepth3)); //false
 console.log(getDepth(TreeDepth4)); //false
 console.log(getDepth(TreeDepth5)); //false
-
