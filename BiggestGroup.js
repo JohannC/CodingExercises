@@ -4,7 +4,7 @@
  [1,1,3,1,2]
  [4,2,1,2,4]]
  Compute the biggest group of neighboring numbers that are equal
- => 5
+ => 6
 */
 
 let matrix = [[1,1,1,3,2],[1,2,3,2,1],[1,1,3,1,2],[4,2,1,2,4]];
