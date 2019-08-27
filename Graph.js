@@ -36,7 +36,6 @@ class Graph {
                     edge.vertexDestination.parent = vertex
                 }
             })
-            vertex.visited = true;
         }
     }
 
@@ -118,7 +117,7 @@ class Graph {
 // 5 /     \ 1
 // (2)_____(4)
 //      1
-//Shortest way from 0 to 2 => 0 3 4 2 with a cost of 5
+//Shortest way from 0 to 2 => 0 3 4 2 with a cost of 4
 
 let matrix = [[0, 5, -1, 2, -1], [5, 0, 5, -1, -1], [-1, 5, 0, -1, 1], [2, -1, -1, 0, 1], [-1, -1, 1, 1, 0]];
 let graph = new Graph(matrix, 0);
