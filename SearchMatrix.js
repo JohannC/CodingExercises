@@ -1,3 +1,5 @@
+//Search a matrix in O(log(n)) with binary search
+
 function searchMatrix(matrix, n) {
     if (n === matrix[0][0]) return [0,0];
     let low = new Point(0, 0);
